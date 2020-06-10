@@ -1,0 +1,49 @@
+class Character:
+        n=0
+        animate = ["AnimateObject ", "AnimateStay ", "AnimateRun ", "AnimateShoot ", "AnimateFlying "]
+        
+        def getting_objects(person, object1):
+            if object1 == 'UpperPower':
+                person._power *=3
+            elif object1 == 'UpperSpeed':
+                person._speed *= 5
+            else: 
+                person._objects +=1
+                print(f'Персонаж {person.__name} подобрал предмет {object1}: {Character.animate[3]}')
+                
+        def __init__(person, name = 'Простой персонаж', x = 0, y = 0, power = 100, speed = 30, objects = 1):
+            person._objects = objects
+            person.__name = name
+            person._x = x
+            person._y = y
+            person._power = power
+            person._speed = speed
+            Character.n += 1
+            print(f'Создали нового персонажа {person.__name}: {Character.animate[0]}')
+            
+        def running(person, d_x=1, d_y=1):
+            person._x += d_x
+            person._y += d_y
+            print(f'Персонаж {person.__name} бежит, положение {person._x, person._y}: {Character.animate[1]}')
+            
+        def shooting(person):
+            print (f'Персонаж {person.__name} стреляет: {Character.animate[2]}')
+            
+class Сharacterflying (Character):
+    def __init__(person, name ='Безымянный персонаж ', x = 0, y = 0, power = 80, speed = 40, objects = 1):
+        Character.__init__(person, name = name, x = x, y = y, power = power, speed = speed, objects = objects)
+        
+        
+character1 = Character('1')
+character2 = Character('2')
+character3 = Сharacterflying('3',1,2)
+print(f'Количество персонажей: {Character.n}')
+print(f'Скорость обычного персонажа: {character1._speed}')
+print(f'Скорость персонажа в полете: {character3._speed}')
+character1.shooting()
+character2.running(1,2)
+character3.running(3,10)
+character1.getting_objects('table')
+character1._objects
+character1.getting_objects('UpperSpeed')
+character1._speed
